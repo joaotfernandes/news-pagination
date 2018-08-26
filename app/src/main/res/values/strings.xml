@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">News</string>
+    <string name="news_api_rights">Powered by News API</string>
 </resources>
