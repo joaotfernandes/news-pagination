@@ -40,4 +40,5 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
     implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
     implementation "com.squareup.moshi:moshi-adapters:$moshiVersion"
+    implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
 }
