@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.joaotfernandes.newspagination.databinding.ItemArticleBinding
 import com.github.joaotfernandes.newspagination.service.model.Article
 
-class ArticlesAdapter : PagedListAdapter<Article, ArticlesAdapter.ArticleViewHolder>(ArticleDiff) {
+class ArticlesAdapter(private val onArticleClicked: (Article) -> Unit)
+    : PagedListAdapter<Article, ArticlesAdapter.ArticleViewHolder>(ArticleDiff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ArticleViewHolder(ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -17,10 +18,11 @@ class ArticlesAdapter : PagedListAdapter<Article, ArticlesAdapter.ArticleViewHol
         getItem(position)?.let { holder.bind(it) }
     }
 
-    class ArticleViewHolder(private val binder: ItemArticleBinding) : RecyclerView.ViewHolder(binder.root) {
+    inner class ArticleViewHolder(private val binder: ItemArticleBinding) : RecyclerView.ViewHolder(binder.root) {
 
         fun bind(article: Article) {
             binder.article = article
+            binder.root.setOnClickListener { onArticleClicked(article) }
             binder.executePendingBindings()
         }
     }
